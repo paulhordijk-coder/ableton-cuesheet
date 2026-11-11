@@ -1,21 +1,21 @@
-# Timeline Studio Design & Huisstijl Specificatie
+# Timeline Studio Design & Style Specification
 
-Dit document legt de interface-standaarden, design tokens en stylingrichtlijnen vast voor **Timeline AbletonCueSheet**, conform het officiële [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system).
-
----
-
-## 🎨 Design Filosofie
-
-De gebruikersinterface van Timeline AbletonCueSheet is ontworpen voor professionele audio- en studiogebruikers:
-- **Rustig en zakelijk**: Minimale visuele afleiding, lichte achtergronden en neutrale panelen zodat de focus op de muziek- en arrangementdata blijft liggen.
-- **Duidelijke hiërarchie**: Hoge contrasten tussen tekst (Slate 900) en secundaire labels (Slate 600/400).
-- **Functionele kleuraccenten**: Cobalt blauw voor interactieve elementen en focus, terughoudend gebruik van signaalkleuren.
+This document defines the interface standards, design tokens, and styling guidelines for **Timeline AbletonCueSheet**, following the official [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system).
 
 ---
 
-## 🏷️ Merkidentiteit & Header
+## 🎨 Design Philosophy
 
-In overeenstemming met de Timeline Studio productlijn geldt de volgende header-opbouw:
+The user interface of Timeline AbletonCueSheet is tailored for audio producers, DJs, and studio engineers:
+- **Calm & Professional**: Minimal visual distractions, calm light backgrounds, and neutral surfaces so focus remains on waveforms and arrangement data.
+- **Clear Hierarchy**: High contrast between primary text (Slate 900) and secondary labels (Slate 600/400).
+- **Functional Accents**: Cobalt blue for interactive elements, focus states, and primary actions; conservative use of signal colors.
+
+---
+
+## 🏷️ Brand Identity & Header
+
+In accordance with the Timeline Studio product line, the header must follow this exact structure:
 
 ```html
 <header class="timeline-header">
@@ -33,12 +33,12 @@ In overeenstemming met de Timeline Studio productlijn geldt de volgende header-o
         <line x1="41" y1="23" x2="41" y2="76" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" />
       </svg>
 
-      <!-- Titel: Altijd TIMELINE in Slate 900 + ABLETONCUESHEET in Cobalt Blauw -->
+      <!-- Title: Always TIMELINE in Slate 900 + ABLETONCUESHEET in Cobalt Blue -->
       <div class="timeline-nav-title">
         <span class="brand-prefix">TIMELINE</span><span class="brand-product">ABLETONCUESHEET</span>
       </div>
 
-      <!-- Versie Badge -->
+      <!-- Version Badge -->
       <span class="timeline-nav-version">v1.0.0</span>
     </div>
   </div>
@@ -47,53 +47,53 @@ In overeenstemming met de Timeline Studio productlijn geldt de volgende header-o
 
 ---
 
-## 📐 Afmetingen & Vensterlayout
+## 📐 Dimensions & Window Layout
 
-- **Modal venster**: 680px breed × 720px hoog (geopend via `context.ui.showModalDialog(url, 680, 720)`).
-- **Headerhoogte**: 64px (`--timeline-header-h`).
-- **Body**: Flexbox kolomlayout met `overflow: hidden` en interne scrollcontainers.
-- **Scrollbars**: Subtiele afgeronde 7px schuifbalken (`::-webkit-scrollbar`).
+- **Modal Window**: 680px width × 720px height (launched via `context.ui.showModalDialog(url, 680, 720)`).
+- **Header Height**: 64px (`--timeline-header-h`).
+- **Body**: Flexbox column layout with `overflow: hidden` and custom internal scroll containers.
+- **Scrollbars**: Clean rounded 7px scrollbars (`::-webkit-scrollbar`).
 
 ---
 
-## 🎨 Kleurenpalet & Design Tokens
+## 🎨 Color Palette & Design Tokens
 
-| Token | Waarde | Doel |
+| Token | Value | Purpose |
 |---|---|---|
-| `--timeline-primary-500` | `#2563eb` | Zakelijk Cobalt Blauw (accent, focus, actieve tabs) |
-| `--timeline-primary-600` | `#1d4ed8` | Primaire knoppen hover-state |
-| `--timeline-primary-50` | `#eff6ff` | Zachte blauwe achtergrond voor badges & highlight tabs |
-| `--timeline-bg-base` | `#f8fafc` | Achtergrond van het venster (Slate 50) |
-| `--timeline-bg-surface` | `#ffffff` | Witte panelen, vensters en modal cards |
-| `--timeline-bg-subtle` | `#f1f5f9` | Toolbar achtergrond, tab container, subtiele vlakken |
-| `--timeline-border-default` | `#e2e8f0` | Subtiele neutrale randen |
-| `--timeline-text-primary` | `#0f172a` | Primaire tekst (Slate 900) |
-| `--timeline-text-secondary` | `#475569` | Secundaire toelichtingen en sublabels (Slate 600) |
-| `--timeline-text-muted` | `#94a3b8` | Placeholders en subtiele hints (Slate 400) |
-| `--timeline-meter-safe` | `#16a34a` | Statusindicator actief / Live connected groen |
+| `--timeline-primary-500` | `#2563eb` | Cobalt Blue (accents, focus rings, active tabs) |
+| `--timeline-primary-600` | `#1d4ed8` | Primary button hover state |
+| `--timeline-primary-50` | `#eff6ff` | Light blue tint for badges & highlighted tabs |
+| `--timeline-bg-base` | `#f8fafc` | Application background (Slate 50) |
+| `--timeline-bg-surface` | `#ffffff` | Pure white cards, modal panels, and tables |
+| `--timeline-bg-subtle` | `#f1f5f9` | Toolbar background, step tab container, subtle lanes |
+| `--timeline-border-default` | `#e2e8f0` | Subtle neutral borders |
+| `--timeline-text-primary` | `#0f172a` | Primary text (Slate 900) |
+| `--timeline-text-secondary` | `#475569` | Secondary labels and helper text (Slate 600) |
+| `--timeline-text-muted` | `#94a3b8` | Placeholders and subtle hints (Slate 400) |
+| `--timeline-meter-safe` | `#16a34a` | Normal level / active green |
 
 ---
 
-## 🔤 Typografie
+## 🔤 Typography
 
 - **Body & Controls**: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
-- **Titels & Branding**: `'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif` (800 gewicht voor logo/titel)
-- **Timecodes & CUE syntax**: `'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace` met `font-variant-numeric: tabular-nums` voor stabiele cijfers zonder verspringing.
+- **Headings & Branding**: `'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif` (800 weight)
+- **Timecodes & CUE syntax**: `'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace` with `font-variant-numeric: tabular-nums` to ensure steady, non-jittering numeric display.
 
 ---
 
-## 🎛️ Componenten in deze extensie
+## 🎛️ UI Components
 
-1. **Stappen Navigatie (`.timeline-tabs`)**:
-   - Tab 1: Instellingen
-   - Tab 2: Track Overzicht
-2. **Formulierinvoer (`.timeline-input`, `.timeline-select`)**:
-   - Witte achtergrond met 1px Slate 200 border, actieve blauwe ring bij `:focus`.
-3. **Knoppen (`.timeline-btn`)**:
-   - `.timeline-btn-primary`: Primaire acties ("Volgende", "Opslaan op bureaublad")
-   - `.timeline-btn-secondary`: Annuleren / Terug acties
-   - `.timeline-btn-surface`: Neutrale acties ("Kopieer naar klembord")
-4. **Interactieve Track-tabel (`.timeline-table`)**:
-   - Vaste header met sticky positioning, interactieve bewerkbare input-velden per track en monospace timecode badges.
-5. **Toast Bevestigingen (`.timeline-toast`)**:
-   - Vloeiende feedback bij acties zoals klembord-kopieën.
+1. **Step Navigation (`.timeline-tabs`)**:
+   - Tab 1: Settings
+   - Tab 2: Track Preview
+2. **Form Inputs (`.timeline-input`, `.timeline-select`)**:
+   - Clean white background, 1px Slate 200 border, cobalt blue outline on `:focus`.
+3. **Buttons (`.timeline-btn`)**:
+   - `.timeline-btn-primary`: Primary actions ("Next", "Save to Desktop")
+   - `.timeline-btn-secondary`: Cancel / Back navigation
+   - `.timeline-btn-surface`: Secondary neutral actions ("Copy to Clipboard")
+4. **Interactive Track Table (`.timeline-table`)**:
+   - Sticky table header, editable inline inputs per track, and monospace timecode tags.
+5. **Toast Notifications (`.timeline-toast`)**:
+   - Smooth animated confirmation upon clipboard copy.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -710,77 +710,77 @@
     </div>
   </header>
 
-  <!-- Navigatie Stappenbalk -->
+  <!-- Step Navigation Bar -->
   <div class="timeline-tabs-bar">
     <div class="timeline-tabs">
       <button id="tab-btn-settings" class="timeline-tab active" onclick="backToSettings()">
-        <span class="step-badge">1</span> Instellingen
+        <span class="step-badge">1</span> Settings
       </button>
       <button id="tab-btn-preview" class="timeline-tab" onclick="proceedToPreview()">
-        <span class="step-badge">2</span> Track Overzicht
+        <span class="step-badge">2</span> Track Preview
       </button>
     </div>
   </div>
 
   <main>
-    <!-- Scherm 1: Instellingen (Settings) -->
+    <!-- Screen 1: Settings -->
     <div id="view-settings" class="view-card">
 
       <div class="form-group" id="filename-group">
-        <label for="filename-input">Mixtape Audio Bestandsnaam</label>
+        <label for="filename-input">Mixtape Audio Filename</label>
         <input type="text" id="filename-input" class="timeline-input" value="mixtape.wav" placeholder="mixtape.wav">
-        <div class="form-help">De bestandsnaam van je geëxporteerde audio-mix (wordt opgenomen onder de FILE-instructie in het cue sheet).</div>
+        <div class="form-help">The filename of your exported audio mix (referenced under the FILE command in the cue sheet).</div>
       </div>
 
       <div class="form-group">
-        <label for="output-filename-input">Uitvoer Cue Sheet Bestandsnaam</label>
+        <label for="output-filename-input">Output Cue Sheet Filename</label>
         <input type="text" id="output-filename-input" class="timeline-input" value="mixtape.txt" placeholder="mixtape.txt">
-        <div class="form-help">De bestandsnaam van het uiteindelijke tekstbestand (wordt automatisch opgeslagen als .txt).</div>
+        <div class="form-help">The filename of the final cue sheet (automatically saved as a .txt file).</div>
       </div>
 
       <div class="form-group">
-        <label for="threshold-input">Track Filter Drempelwaarde</label>
+        <label for="threshold-input">Track Filter Threshold</label>
         <input type="text" id="threshold-input" class="timeline-input" value="1:30" placeholder="1:30">
-        <div class="form-help">Clips korter dan deze drempelwaarde (bijv. <code>1:30</code> of <code>90</code> seconden) worden genegeerd om korte SFX, risers en fills uit te filteren.</div>
+        <div class="form-help">Clips shorter than this threshold (e.g. <code>1:30</code> or <code>90</code> seconds) are ignored to filter out short SFX, risers, and fills.</div>
       </div>
 
       <div class="form-group">
-        <label for="transition-select">Overgangspositie (Cue Index Point)</label>
+        <label for="transition-select">Transition Cue Position (Cue Index Point)</label>
         <select id="transition-select" class="timeline-select">
-          <option value="start">Start van overgang / overlap (Inkomend nummer begint te spelen)</option>
-          <option value="end">Einde van overgang / overlap (Vorig nummer is uitgefade)</option>
+          <option value="start">Start of transition / overlap (Incoming track starts playing)</option>
+          <option value="end">End of transition / overlap (Outgoing track finishes fading out)</option>
         </select>
-        <div class="form-help">Bepaalt of het tijdstip triggert zodra het nieuwe nummer infadet of pas wanneer het vorige nummer volledig is afgelopen.</div>
+        <div class="form-help">Determines whether the cue point triggers when the incoming track starts playing or when the outgoing track finishes fading out.</div>
       </div>
 
       <div class="form-group">
         <label class="timeline-form-check" for="merge-contiguous-checkbox">
           <input type="checkbox" id="merge-contiguous-checkbox" class="timeline-checkbox" checked onchange="updateInfoSummary()">
-          <span>Aaneengesloten clips op hetzelfde spoor / lane samenvoegen</span>
+          <span>Merge contiguous clips on the same track / lane</span>
         </label>
-        <div class="form-help">Voegt aansluitende clips op hetzelfde spoor samen tot één doorlopend segment voordat de drempelwaarde wordt getoetst.</div>
+        <div class="form-help">Merges adjacent clips on the same track into a single continuous segment before evaluating the threshold.</div>
       </div>
 
-      <!-- Live Samenvatting Status Box -->
+      <!-- Live Summary Status Box -->
       <div class="timeline-info-box" style="margin-top: 4px;">
         <svg class="timeline-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="16" x2="12" y2="12"></line>
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
         </svg>
-        <div class="timeline-info-text" id="info-text">Arrangement clips analyseren...</div>
+        <div class="timeline-info-text" id="info-text">Analyzing arrangement clips...</div>
       </div>
 
       <div class="timeline-btn-row">
-        <button class="timeline-btn timeline-btn-secondary" onclick="cancelDialog()">Annuleren</button>
-        <button class="timeline-btn timeline-btn-primary" onclick="proceedToPreview()">Volgende: Track Overzicht &rarr;</button>
+        <button class="timeline-btn timeline-btn-secondary" onclick="cancelDialog()">Cancel</button>
+        <button class="timeline-btn timeline-btn-primary" onclick="proceedToPreview()">Next: Track Preview &rarr;</button>
       </div>
     </div>
 
-    <!-- Scherm 2: Track Overzicht (Preview & Edit) -->
+    <!-- Screen 2: Track Preview (Preview & Edit) -->
     <div id="view-preview" class="view-card hidden">
       <div class="form-help">
-        Controleer en bewerk hieronder de tracktitels en artiesten die automatisch zijn gedetecteerd uit de arrangement-clips.
+        Review and edit the track titles and performers automatically detected from your arrangement clips below.
       </div>
 
       <div class="table-container">
@@ -788,39 +788,39 @@
           <thead>
             <tr>
               <th style="width: 6%; text-align: center;">#</th>
-              <th style="width: 22%">Starttijd</th>
-              <th style="width: 30%">Spoor & Bronbestand</th>
-              <th style="width: 21%">Track Titel</th>
-              <th style="width: 21%">Artiest / Performer</th>
+              <th style="width: 22%">Timecode</th>
+              <th style="width: 30%">Track & Source File</th>
+              <th style="width: 21%">Track Title</th>
+              <th style="width: 21%">Artist / Performer</th>
             </tr>
           </thead>
           <tbody id="track-table-body">
-            <!-- Dynamische rijen -->
+            <!-- Dynamic rows -->
           </tbody>
         </table>
       </div>
 
       <div>
         <div class="preview-header-row">
-          <label>Cue Sheet Voorvertoning</label>
+          <label>Cue Sheet Preview</label>
           <span style="font-size: 0.72rem; color: var(--timeline-text-muted); font-family: var(--timeline-font-mono);">FILE & TRACK INDEX</span>
         </div>
         <div class="preview-block" id="cue-preview" style="margin-top: 6px;">
-          <!-- Live gegenereerde CUE tekst -->
+          <!-- Live generated CUE text -->
         </div>
       </div>
 
       <div class="timeline-btn-row">
-        <button class="timeline-btn timeline-btn-secondary" onclick="backToSettings()">&larr; Terug</button>
-        <button class="timeline-btn timeline-btn-surface" onclick="copyCueToClipboard()">Kopieer naar klembord</button>
-        <button class="timeline-btn timeline-btn-primary" onclick="exportCueSheet()">Opslaan op bureaublad</button>
+        <button class="timeline-btn timeline-btn-secondary" onclick="backToSettings()">&larr; Back</button>
+        <button class="timeline-btn timeline-btn-surface" onclick="copyCueToClipboard()">Copy to Clipboard</button>
+        <button class="timeline-btn timeline-btn-primary" onclick="exportCueSheet()">Save to Desktop</button>
       </div>
     </div>
   </main>
 
   <div id="toast" class="timeline-toast">
     <div class="timeline-toast-dot"></div>
-    <span id="toast-message">Gekopieerd naar klembord!</span>
+    <span id="toast-message">Copied to clipboard!</span>
   </div>
 
   <script>
@@ -902,14 +902,14 @@
       return `${mm}:${ss}:${ff}`;
     }
 
-    // Aaneengesloten clips op hetzelfde spoor groeperen
+    // Merge contiguous clips on the same track / lane
     function mergeClipsList(clips, tempo) {
       const mergeEnabled = document.getElementById("merge-contiguous-checkbox").checked;
       if (!mergeEnabled) return clips;
 
       const groups = {};
       clips.forEach(clip => {
-        const tName = clip.trackName || "Onbekend Spoor";
+        const tName = clip.trackName || "Unknown Track";
         if (!groups[tName]) {
           groups[tName] = [];
         }
@@ -955,8 +955,8 @@
       });
 
       document.getElementById("info-text").innerHTML = 
-        `Gevonden: <strong>${projectData.clips.length} ruwe clips</strong> in arrangement. ` +
-        `Na samenvoeging: <strong>${totalCount} segmenten</strong>, waarvan <strong>${longClips.length} tracks</strong> voldoen aan de drempelwaarde.`;
+        `Found: <strong>${projectData.clips.length} raw clips</strong> in arrangement. ` +
+        `After merging: <strong>${totalCount} segments</strong>, of which <strong>${longClips.length} tracks</strong> meet the threshold.`;
     }
 
     function calculateMatchedTracks() {
@@ -1017,8 +1017,8 @@
           timeFormatted: formatTime(clipTimeSecs),
           artist: artist,
           title: title,
-          trackName: clip.trackName || "Onbekend Spoor",
-          fileName: clip.fileName || "Geen audiobestand"
+          trackName: clip.trackName || "Unknown Track",
+          fileName: clip.fileName || "None"
         });
       }
       
@@ -1030,7 +1030,7 @@
       tbody.innerHTML = "";
 
       if (matchedTracksList.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 24px; color: var(--timeline-text-muted);">Geen tracks gevonden die aan de drempelwaarde voldoen.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 24px; color: var(--timeline-text-muted);">No tracks found matching the filter threshold.</td></tr>`;
         return;
       }
 
@@ -1126,9 +1126,9 @@
     function copyCueToClipboard() {
       const text = generateCueString();
       navigator.clipboard.writeText(text).then(() => {
-        showToast("Cue sheet gekopieerd naar klembord!");
+        showToast("Cue sheet copied to clipboard!");
       }).catch(err => {
-        showToast("Kopiëren mislukt: " + err);
+        showToast("Error copying to clipboard: " + err);
       });
     }
 
