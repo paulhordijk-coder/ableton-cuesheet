@@ -62,6 +62,7 @@ export function activate(activation: ActivationContext) {
   };
 
   // Register the primary command and backwards-compatible aliases
+  context.commands.registerCommand("timeline-abletoncuesheet.showDialog", openCueSheetDialog);
   context.commands.registerCommand("timeline-cuesheet.showDialog", openCueSheetDialog);
   context.commands.registerCommand("ableton-cuesheet.showDialog", openCueSheetDialog);
   context.commands.registerCommand("mixtape-cuesheet.showDialog", openCueSheetDialog);
@@ -72,8 +73,8 @@ export function activate(activation: ActivationContext) {
   scopes.forEach((scope) => {
     context.ui.registerContextMenuAction(
       scope,
-      "Timeline CueSheet...",
-      "timeline-cuesheet.showDialog"
+      "Timeline AbletonCueSheet...",
+      "timeline-abletoncuesheet.showDialog"
     );
   });
 }

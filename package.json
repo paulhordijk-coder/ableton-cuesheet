@@ -1,7 +1,7 @@
 {
   "name": "ableton-cuesheet",
   "version": "1.0.0",
-  "description": "Timeline CueSheet - Mixtape Cue Sheet Generator for Ableton Live",
+  "description": "Timeline AbletonCueSheet - Mixtape Cue Sheet Generator for Ableton Live",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/paulhordijk-coder/ableton-cuesheet.git"
