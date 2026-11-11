@@ -2,7 +2,11 @@
 
 **Timeline AbletonCueSheet** is een professionele Ableton Live extensie gebouwd met de `@ableton-extensions/sdk`, ontworpen om direct vanuit je Ableton Live arrangement kant-en-klare cue sheets (`.cue` / `.txt`) te genereren voor mixtapes, podcasts en livesets.
 
-De interface volgt de rustige, zakelijke huisstijl van het [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system).
+---
+
+## 📸 Interface Preview
+
+![Timeline AbletonCueSheet Interface](screenshot.png)
 
 ---
 
@@ -18,19 +22,8 @@ Voorheen moesten DJ's en producers handmatig door hun arrangement navigeren om p
 2. Analyseert automatisch alle audio- en MIDI-clips uit het actieve arrangement.
 3. Filtert met slimme drempelwaarden korte risers, sweeps, fills en percussie-samples weg.
 4. Voegt aaneengesloten clips op hetzelfde spoor automatisch samen.
-5. Biedt een overzichtelijke pop-up dialoog conform de Timeline Studio huisstijl (lichte achtergronden, minimale kleurafleiding, clean typografie en haarscherpe bedieningselementen).
+5. Biedt een overzichtelijke pop-up dialoog waarin alle tracks direct geïnspecteerd en bewerkt kunnen worden.
 6. Genereert de volledige CUE sheet met één klik op het bureaublad of kopieert deze direct naar het klembord.
-
----
-
-## 🎨 Huisstijl & Design Tokens
-
-De gebruikersinterface van **Timeline AbletonCueSheet** implementeert het officiële [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system):
-
-- **Achtergronden**: Rustige en zakelijke lichte achtergrond (`--timeline-bg-base: #f8fafc;`) met helderwitte paneelvlakken (`--timeline-bg-surface: #ffffff;`).
-- **Accentkleur**: Timeline Cobalt Blue (`--timeline-primary-500: #2563eb;`) voor actieve elementen, tabs en primaire actieknoppen.
-- **Typografie**: Inter voor interface-elementen, Plus Jakarta Sans voor titels, en JetBrains Mono met `tabular-nums` voor stabiele SMPTE timecodes.
-- **Header**: Uniforme Timeline Studio applicatiebalk inclusief officieel logo-mark, merknaam (`TIMELINE ABLETONCUESHEET`), versie-indicatie (`v1.0.0`) en realtime Live verbindingsstatus.
 
 ---
 
