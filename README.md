@@ -1,6 +1,6 @@
-# AbletonCueSheet
+# Timeline CueSheet
 
-**AbletonCueSheet** is een professionele Ableton Live extensie gebouwd met de `@ableton-extensions/sdk`, ontworpen om direct vanuit je Ableton Live arrangement kant-en-klare cue sheets (`.cue` / `.txt`) te genereren voor mixtapes, podcasts en livesets.
+**Timeline CueSheet** is een professionele Ableton Live extensie gebouwd met de `@ableton-extensions/sdk`, ontworpen om direct vanuit je Ableton Live arrangement kant-en-klare cue sheets (`.cue` / `.txt`) te genereren voor mixtapes, podcasts en livesets.
 
 De interface volgt de rustige, zakelijke huisstijl van het [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system).
 
@@ -10,11 +10,11 @@ De interface volgt de rustige, zakelijke huisstijl van het [Timeline Studio Desi
 
 Dit project is ontwikkeld door **Antigravity** (Google DeepMind) in samenwerking met de gebruiker.
 
-### Wat AbletonCueSheet oplost:
+### Wat Timeline CueSheet oplost:
 Voorheen moesten DJ's en producers handmatig door hun arrangement navigeren om per overgang de precieze tijdcode (minuten, seconden, frames) op te schrijven voor een tracklist of CUE-bestand.
 
-**AbletonCueSheet**:
-1. Wordt direct geopend via het Ableton Live contextmenu op clips of tracks (**"AbletonCueSheet..."**).
+**Timeline CueSheet**:
+1. Wordt direct geopend via het Ableton Live contextmenu op clips of tracks (**"Timeline CueSheet..."**).
 2. Analyseert automatisch alle audio- en MIDI-clips uit het actieve arrangement.
 3. Filtert met slimme drempelwaarden korte risers, sweeps, fills en percussie-samples weg.
 4. Voegt aaneengesloten clips op hetzelfde spoor automatisch samen.
@@ -25,12 +25,12 @@ Voorheen moesten DJ's en producers handmatig door hun arrangement navigeren om p
 
 ## 🎨 Huisstijl & Design Tokens
 
-De gebruikersinterface van **AbletonCueSheet** implementeert het officiële [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system):
+De gebruikersinterface van **Timeline CueSheet** implementeert het officiële [Timeline Studio Design System](https://github.com/paulhordijk-coder/design-system):
 
 - **Achtergronden**: Rustige en zakelijke lichte achtergrond (`--timeline-bg-base: #f8fafc;`) met helderwitte paneelvlakken (`--timeline-bg-surface: #ffffff;`).
 - **Accentkleur**: Timeline Cobalt Blue (`--timeline-primary-500: #2563eb;`) voor actieve elementen, tabs en primaire actieknoppen.
 - **Typografie**: Inter voor interface-elementen, Plus Jakarta Sans voor titels, en JetBrains Mono met `tabular-nums` voor stabiele SMPTE timecodes.
-- **Header**: Uniforme Timeline Studio applicatiebalk inclusief officieel logo-mark, merknaam (`AbletonCueSheet`), versie-indicatie (`v1.0.0`) en realtime Live verbindingsstatus.
+- **Header**: Uniforme Timeline Studio applicatiebalk inclusief officieel logo-mark, merknaam (`Timeline CueSheet`), versie-indicatie (`v1.0.0`) en realtime Live verbindingsstatus.
 
 ---
 
