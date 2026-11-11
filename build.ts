@@ -5,7 +5,7 @@ const manifest = JSON.parse(fs.readFileSync("manifest.json", "utf8"));
 const production = process.argv.includes("--production");
 
 await esbuild.build({
-  entryPoints: ["src/mixtape-cuesheet/extension.ts"],
+  entryPoints: ["src/ableton-cuesheet/extension.ts"],
   outfile: manifest.entry,
   bundle: true,
   format: "cjs",

@@ -9,7 +9,7 @@ import bundledInterface from "./ui/interface.html";
 export function activate(activation: ActivationContext) {
   const context = initialize(activation, "1.0.0");
 
-  context.commands.registerCommand("mixtape-cuesheet.showDialog", async () => {
+  const openCueSheetDialog = async () => {
     try {
       const song = context.application.song;
       
@@ -42,8 +42,8 @@ export function activate(activation: ActivationContext) {
       const injectedHtml = bundledInterface.replace("<head>", `<head>${scriptTag}`);
       const url = `data:text/html,${encodeURIComponent(injectedHtml)}`;
 
-      // Open the modal dialog with Ableton-friendly sizing
-      const resultStr = await context.ui.showModalDialog(url, 640, 680);
+      // Open the modal dialog with Timeline Studio sizing
+      const resultStr = await context.ui.showModalDialog(url, 680, 720);
       
       if (!resultStr) return;
 
@@ -54,12 +54,16 @@ export function activate(activation: ActivationContext) {
         const filePath = path.join(desktopPath, result.filename);
         
         fs.writeFileSync(filePath, result.content, "utf8");
-        console.log(`[mixtape-cuesheet] Cue sheet successfully saved to: ${filePath}`);
+        console.log(`[AbletonCueSheet] Cue sheet successfully saved to: ${filePath}`);
       }
     } catch (error) {
-      console.error("[mixtape-cuesheet] Error in mixtape cuesheet dialog:", error);
+      console.error("[AbletonCueSheet] Error in AbletonCueSheet dialog:", error);
     }
-  });
+  };
+
+  // Register the primary command and backwards-compatible alias
+  context.commands.registerCommand("ableton-cuesheet.showDialog", openCueSheetDialog);
+  context.commands.registerCommand("mixtape-cuesheet.showDialog", openCueSheetDialog);
 
   // Register context menu actions in various layout locations for convenience
   const scopes = ["AudioClip", "AudioTrack", "MidiClip", "MidiTrack"] as const;
@@ -67,8 +71,8 @@ export function activate(activation: ActivationContext) {
   scopes.forEach((scope) => {
     context.ui.registerContextMenuAction(
       scope,
-      "Generate Mixtape Cue Sheet...",
-      "mixtape-cuesheet.showDialog"
+      "AbletonCueSheet...",
+      "ableton-cuesheet.showDialog"
     );
   });
 }

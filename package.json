@@ -1,6 +1,11 @@
 {
-  "name": "mixtape-cuesheet",
+  "name": "ableton-cuesheet",
   "version": "1.0.0",
+  "description": "AbletonCueSheet - Mixtape Cue Sheet Generator for Ableton Live",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulhordijk-coder/ableton-cuesheet.git"
+  },
   "main": "dist/extension.js",
   "engines": {
     "node": ">=24.14.1"
@@ -13,7 +18,8 @@
     "package": "npm run build && extensions-cli package"
   },
   "dependencies": {
-    "@ableton-extensions/sdk": "file:./vendor/ableton-extensions-sdk-1.0.0-beta.0.tgz"
+    "@ableton-extensions/sdk": "file:./vendor/ableton-extensions-sdk-1.0.0-beta.0.tgz",
+    "@timeline-studio/design-system": "github:paulhordijk-coder/design-system"
   },
   "devDependencies": {
     "@ableton-extensions/cli": "file:./vendor/ableton-extensions-cli-1.0.0-beta.0.tgz",

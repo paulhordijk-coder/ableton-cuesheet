@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AbletonCueSheet</title>
+  <!-- Zero-Setup CDN links van paulhordijk-coder/design-system -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paulhordijk-coder/design-system@main/css/timeline-tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/paulhordijk-coder/design-system@main/css/timeline-components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /**
+     * TIMELINE STUDIO DESIGN SYSTEM - ABLETON CUESHEET STYLING
+     * Huisstijl: https://github.com/paulhordijk-coder/design-system
+     */
+    :root {
+      /* Zakelijk primair accent */
+      --timeline-primary-50:  #eff6ff;
+      --timeline-primary-100: #dbeafe;
+      --timeline-primary-500: #2563eb;
+      --timeline-primary-600: #1d4ed8;
+      --timeline-primary-700: #1e40af;
+      --timeline-primary-900: #1e3a8a;
+
+      /* Lichte achtergronden & surfaces */
+      --timeline-bg-base:     #f8fafc;
+      --timeline-bg-surface:  #ffffff;
+      --timeline-bg-subtle:   #f1f5f9;
+      --timeline-bg-muted:    #e2e8f0;
+      --timeline-bg-hover:    #f8fafc;
+
+      /* Randen & dividers */
+      --timeline-border-subtle:  #f1f5f9;
+      --timeline-border-default: #e2e8f0;
+      --timeline-border-strong:  #cbd5e1;
+      --timeline-border-focus:   #2563eb;
+
+      /* Typografie & tekstkleuren */
+      --timeline-font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --timeline-font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --timeline-font-mono:    'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+      --timeline-text-primary:   #0f172a; /* Slate 900 */
+      --timeline-text-secondary: #475569; /* Slate 600 */
+      --timeline-text-muted:     #94a3b8; /* Slate 400 */
+      --timeline-text-inverse:   #ffffff;
+
+      /* Functionele AV signalen */
+      --timeline-av-rec:      #dc2626;
+      --timeline-av-solo:     #d97706;
+      --timeline-meter-safe:  #16a34a;
+
+      /* Schaduwen */
+      --timeline-shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+      --timeline-shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
+      --timeline-shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --timeline-shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+
+      /* Afmetingen */
+      --timeline-header-h:     64px;
+      --timeline-control-h-sm: 28px;
+      --timeline-control-h-md: 36px;
+      --timeline-control-h-lg: 42px;
+
+      --timeline-radius-xs: 4px;
+      --timeline-radius-sm: 6px;
+      --timeline-radius-md: 8px;
+      --timeline-radius-lg: 10px;
+      --timeline-radius-xl: 12px;
+      --timeline-radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--timeline-bg-base);
+      color: var(--timeline-text-primary);
+      font-family: var(--timeline-font-sans);
+      font-size: 13px;
+      line-height: 1.5;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--timeline-bg-subtle);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--timeline-border-strong);
+      border-radius: var(--timeline-radius-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--timeline-text-muted);
+    }
+
+    /* Timeline Studio Uniforme Applicatie Header */
+    .timeline-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: var(--timeline-header-h);
+      min-height: var(--timeline-header-h);
+      max-height: var(--timeline-header-h);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: var(--timeline-bg-surface);
+      border-bottom: 1px solid var(--timeline-border-default);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      box-sizing: border-box;
+    }
+
+    .timeline-header-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .timeline-nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .timeline-nav-logo-img {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--timeline-radius-md);
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    }
+
+    .timeline-nav-title {
+      font-family: var(--timeline-font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .timeline-nav-title .brand-prefix {
+      color: var(--timeline-text-primary);
+      font-weight: 800;
+    }
+
+    .timeline-nav-title .brand-product {
+      color: var(--timeline-primary-500);
+      font-weight: 800;
+    }
+
+    .timeline-nav-version {
+      font-family: var(--timeline-font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--timeline-primary-600);
+      background: var(--timeline-primary-50);
+      border: 1px solid var(--timeline-primary-100);
+      padding: 2px 6px;
+      border-radius: var(--timeline-radius-sm);
+      margin-left: 6px;
+    }
+
+    .timeline-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      background: var(--timeline-bg-subtle);
+      border: 1px solid var(--timeline-border-default);
+      border-radius: var(--timeline-radius-full);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--timeline-text-secondary);
+    }
+
+    .timeline-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--timeline-meter-safe);
+      box-shadow: 0 0 6px rgba(22, 163, 74, 0.6);
+    }
+
+    /* Subheader & Tabs */
+    .timeline-tabs-bar {
+      background: var(--timeline-bg-surface);
+      border-bottom: 1px solid var(--timeline-border-default);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .timeline-tabs {
+      display: inline-flex;
+      gap: 24px;
+    }
+
+    .timeline-tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 12px 0;
+      font-family: var(--timeline-font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--timeline-text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+      outline: none;
+    }
+
+    .timeline-tab:hover {
+      color: var(--timeline-text-primary);
+    }
+
+    .timeline-tab.active {
+      color: var(--timeline-primary-500);
+      border-bottom-color: var(--timeline-primary-500);
+    }
+
+    .timeline-tab .step-badge {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--timeline-bg-subtle);
+      color: var(--timeline-text-secondary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .timeline-tab.active .step-badge {
+      background: var(--timeline-primary-500);
+      color: #ffffff;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .view-card {
+      background: var(--timeline-bg-surface);
+      border: 1px solid var(--timeline-border-default);
+      border-radius: var(--timeline-radius-xl);
+      box-shadow: var(--timeline-shadow-sm);
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      animation: timeline-fade 0.18s ease-out;
+      overflow: hidden;
+    }
+
+    @keyframes timeline-fade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Form Fields */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--timeline-text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timeline-input {
+      width: 100%;
+      height: var(--timeline-control-h-md);
+      min-height: var(--timeline-control-h-md);
+      padding: 0 12px;
+      box-sizing: border-box;
+      font-family: var(--timeline-font-sans);
+      font-size: 0.875rem;
+      color: var(--timeline-text-primary);
+      background-color: var(--timeline-bg-surface);
+      border: 1px solid var(--timeline-border-strong);
+      border-radius: var(--timeline-radius-md);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      user-select: text;
+    }
+
+    .timeline-input:hover {
+      border-color: var(--timeline-text-secondary);
+    }
+
+    .timeline-input:focus {
+      border-color: var(--timeline-primary-500);
+      box-shadow: 0 0 0 3px var(--timeline-primary-50);
+    }
+
+    .timeline-select {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      height: var(--timeline-control-h-md);
+      padding: 0 34px 0 12px;
+      font-family: var(--timeline-font-sans);
+      font-size: 0.875rem;
+      color: var(--timeline-text-primary);
+      background-color: var(--timeline-bg-surface);
+      border: 1px solid var(--timeline-border-strong);
+      border-radius: var(--timeline-radius-md);
+      cursor: pointer;
+      outline: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .timeline-select:hover {
+      border-color: var(--timeline-text-secondary);
+    }
+
+    .timeline-select:focus {
+      border-color: var(--timeline-primary-500);
+      box-shadow: 0 0 0 3px var(--timeline-primary-50);
+    }
+
+    .form-help {
+      font-size: 0.775rem;
+      color: var(--timeline-text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Checkbox */
+    .timeline-form-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--timeline-text-primary);
+      cursor: pointer;
+      user-select: none;
+      margin-top: 2px;
+    }
+
+    .timeline-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--timeline-border-strong);
+      border-radius: var(--timeline-radius-xs);
+      background-color: var(--timeline-bg-surface);
+      cursor: pointer;
+      display: inline-grid;
+      place-content: center;
+      transition: all 0.15s ease;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .timeline-checkbox:hover {
+      border-color: var(--timeline-primary-500);
+    }
+
+    .timeline-checkbox:focus-visible {
+      outline: 2px solid var(--timeline-primary-500);
+      outline-offset: 2px;
+    }
+
+    .timeline-checkbox:checked {
+      background-color: var(--timeline-primary-500);
+      border-color: var(--timeline-primary-500);
+    }
+
+    .timeline-checkbox:checked::before {
+      content: "";
+      width: 9px;
+      height: 5px;
+      border-left: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+      transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+    /* Info Status Card */
+    .timeline-info-box {
+      background: var(--timeline-bg-subtle);
+      border: 1px solid var(--timeline-border-default);
+      border-radius: var(--timeline-radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.8125rem;
+      color: var(--timeline-text-secondary);
+    }
+
+    .timeline-info-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--timeline-primary-500);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .timeline-info-text strong {
+      color: var(--timeline-text-primary);
+      font-weight: 600;
+    }
+
+    /* Track Preview Table */
+    .table-container {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid var(--timeline-border-default);
+      background: var(--timeline-bg-surface);
+      border-radius: var(--timeline-radius-md);
+      max-height: 250px;
+      box-shadow: var(--timeline-shadow-xs);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--timeline-bg-subtle);
+      color: var(--timeline-text-secondary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 10px 12px;
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid var(--timeline-border-default);
+      z-index: 10;
+    }
+
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--timeline-border-subtle);
+      vertical-align: middle;
+      color: var(--timeline-text-primary);
+    }
+
+    tr:hover td {
+      background-color: var(--timeline-bg-subtle);
+    }
+
+    .timeline-timecode {
+      font-family: var(--timeline-font-mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--timeline-text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    .timeline-lane-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--timeline-primary-50);
+      color: var(--timeline-primary-700);
+      border: 1px solid var(--timeline-primary-100);
+      border-radius: var(--timeline-radius-full);
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .timeline-table-input {
+      background-color: var(--timeline-bg-surface);
+      color: var(--timeline-text-primary);
+      border: 1px solid var(--timeline-border-default);
+      border-radius: var(--timeline-radius-sm);
+      padding: 6px 10px;
+      font-size: 0.8125rem;
+      font-family: inherit;
+      width: 100%;
+      outline: none;
+      transition: all 0.15s ease;
+      user-select: text;
+    }
+
+    .timeline-table-input:hover {
+      border-color: var(--timeline-border-strong);
+    }
+
+    .timeline-table-input:focus {
+      border-color: var(--timeline-primary-500);
+      box-shadow: 0 0 0 2px var(--timeline-primary-50);
+      background-color: #ffffff;
+    }
+
+    /* Cue Sheet Code Preview Block (Cinema Terminal Styling) */
+    .preview-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .preview-block {
+      background-color: #0b1120; /* Slate 950 Dark Cinema */
+      border: 1px solid #1e293b;
+      border-radius: var(--timeline-radius-md);
+      padding: 12px 14px;
+      font-family: var(--timeline-font-mono);
+      font-size: 0.775rem;
+      line-height: 1.5;
+      color: #38bdf8; /* Precision Cyan */
+      white-space: pre;
+      overflow-x: auto;
+      max-height: 125px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+      user-select: text;
+    }
+
+    /* Buttons */
+    .timeline-btn-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--timeline-border-default);
+    }
+
+    .timeline-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      height: var(--timeline-control-h-md);
+      min-height: var(--timeline-control-h-md);
+      padding: 0 1.15rem;
+      min-width: 96px;
+      box-sizing: border-box;
+      font-family: var(--timeline-font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--timeline-radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+      outline: none;
+    }
+
+    .timeline-btn:focus-visible {
+      outline: 2px solid var(--timeline-primary-500);
+      outline-offset: 2px;
+    }
+
+    .timeline-btn-primary {
+      background-color: var(--timeline-primary-500);
+      color: #ffffff;
+      border-color: var(--timeline-primary-600);
+      box-shadow: var(--timeline-shadow-xs);
+    }
+
+    .timeline-btn-primary:hover {
+      background-color: var(--timeline-primary-600);
+    }
+
+    .timeline-btn-primary:active {
+      background-color: var(--timeline-primary-700);
+      transform: translateY(1px);
+    }
+
+    .timeline-btn-secondary {
+      background-color: var(--timeline-bg-subtle);
+      color: var(--timeline-text-primary);
+      border-color: var(--timeline-border-default);
+    }
+
+    .timeline-btn-secondary:hover {
+      background-color: var(--timeline-bg-muted);
+      border-color: var(--timeline-border-strong);
+    }
+
+    .timeline-btn-surface {
+      background-color: var(--timeline-bg-surface);
+      color: var(--timeline-text-primary);
+      border-color: var(--timeline-border-strong);
+      box-shadow: var(--timeline-shadow-xs);
+    }
+
+    .timeline-btn-surface:hover {
+      background-color: var(--timeline-bg-subtle);
+      border-color: var(--timeline-text-secondary);
+    }
+
+    /* Toast Notification */
+    .timeline-toast {
+      position: absolute;
+      bottom: 75px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: var(--timeline-radius-full);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--timeline-shadow-lg);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .timeline-toast-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Uniforme Applicatie Header conform Timeline Studio Huisstijl -->
+  <header class="timeline-header">
+    <div class="timeline-header-inner">
+      <div class="timeline-nav-logo">
+        <!-- Timeline Studio Logo Mark SVG -->
+        <svg class="timeline-nav-logo-img" viewBox="0 0 100 100" fill="none">
+          <rect width="100" height="100" rx="20" fill="#2563eb" />
+          <rect x="20" y="28" width="34" height="11" rx="4" fill="#ffffff" fill-opacity="0.9" />
+          <rect x="58" y="28" width="22" height="11" rx="4" fill="#ffffff" fill-opacity="0.5" />
+          <rect x="20" y="44" width="22" height="11" rx="4" fill="#ffffff" fill-opacity="0.5" />
+          <rect x="46" y="44" width="34" height="11" rx="4" fill="#ffffff" fill-opacity="0.9" />
+          <rect x="20" y="60" width="40" height="11" rx="4" fill="#ffffff" fill-opacity="0.9" />
+          <polygon points="41,17 48,25 34,25" fill="#ffffff" />
+          <line x1="41" y1="23" x2="41" y2="76" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" />
+        </svg>
+        <div class="timeline-nav-title">
+          <span class="brand-prefix">Ableton</span><span class="brand-product">CueSheet</span>
+        </div>
+        <span class="timeline-nav-version">v1.0.0</span>
+      </div>
+
+      <div class="timeline-status-badge">
+        <span class="timeline-status-dot"></span>
+        <span>Live Connected</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigatie Stappenbalk -->
+  <div class="timeline-tabs-bar">
+    <div class="timeline-tabs">
+      <button id="tab-btn-settings" class="timeline-tab active" onclick="backToSettings()">
+        <span class="step-badge">1</span> Instellingen
+      </button>
+      <button id="tab-btn-preview" class="timeline-tab" onclick="proceedToPreview()">
+        <span class="step-badge">2</span> Track Overzicht
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Scherm 1: Instellingen (Settings) -->
+    <div id="view-settings" class="view-card">
+
+      <div class="form-group" id="filename-group">
+        <label for="filename-input">Mixtape Audio Bestandsnaam</label>
+        <input type="text" id="filename-input" class="timeline-input" value="mixtape.wav" placeholder="mixtape.wav">
+        <div class="form-help">De bestandsnaam van je geëxporteerde audio-mix (wordt opgenomen onder de FILE-instructie in het cue sheet).</div>
+      </div>
+
+      <div class="form-group">
+        <label for="output-filename-input">Uitvoer Cue Sheet Bestandsnaam</label>
+        <input type="text" id="output-filename-input" class="timeline-input" value="mixtape.txt" placeholder="mixtape.txt">
+        <div class="form-help">De bestandsnaam van het uiteindelijke tekstbestand (wordt automatisch opgeslagen als .txt).</div>
+      </div>
+
+      <div class="form-group">
+        <label for="threshold-input">Track Filter Drempelwaarde</label>
+        <input type="text" id="threshold-input" class="timeline-input" value="1:30" placeholder="1:30">
+        <div class="form-help">Clips korter dan deze drempelwaarde (bijv. <code>1:30</code> of <code>90</code> seconden) worden genegeerd om korte SFX, risers en fills uit te filteren.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="transition-select">Overgangspositie (Cue Index Point)</label>
+        <select id="transition-select" class="timeline-select">
+          <option value="start">Start van overgang / overlap (Inkomend nummer begint te spelen)</option>
+          <option value="end">Einde van overgang / overlap (Vorig nummer is uitgefade)</option>
+        </select>
+        <div class="form-help">Bepaalt of het tijdstip triggert zodra het nieuwe nummer infadet of pas wanneer het vorige nummer volledig is afgelopen.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="timeline-form-check" for="merge-contiguous-checkbox">
+          <input type="checkbox" id="merge-contiguous-checkbox" class="timeline-checkbox" checked onchange="updateInfoSummary()">
+          <span>Aaneengesloten clips op hetzelfde spoor / lane samenvoegen</span>
+        </label>
+        <div class="form-help">Voegt aansluitende clips op hetzelfde spoor samen tot één doorlopend segment voordat de drempelwaarde wordt getoetst.</div>
+      </div>
+
+      <!-- Live Samenvatting Status Box -->
+      <div class="timeline-info-box" style="margin-top: 4px;">
+        <svg class="timeline-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <div class="timeline-info-text" id="info-text">Arrangement clips analyseren...</div>
+      </div>
+
+      <div class="timeline-btn-row">
+        <button class="timeline-btn timeline-btn-secondary" onclick="cancelDialog()">Annuleren</button>
+        <button class="timeline-btn timeline-btn-primary" onclick="proceedToPreview()">Volgende: Track Overzicht &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Scherm 2: Track Overzicht (Preview & Edit) -->
+    <div id="view-preview" class="view-card hidden">
+      <div class="form-help">
+        Controleer en bewerk hieronder de tracktitels en artiesten die automatisch zijn gedetecteerd uit de arrangement-clips.
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 6%; text-align: center;">#</th>
+              <th style="width: 22%">Starttijd</th>
+              <th style="width: 30%">Spoor & Bronbestand</th>
+              <th style="width: 21%">Track Titel</th>
+              <th style="width: 21%">Artiest / Performer</th>
+            </tr>
+          </thead>
+          <tbody id="track-table-body">
+            <!-- Dynamische rijen -->
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="preview-header-row">
+          <label>Cue Sheet Voorvertoning</label>
+          <span style="font-size: 0.72rem; color: var(--timeline-text-muted); font-family: var(--timeline-font-mono);">FILE & TRACK INDEX</span>
+        </div>
+        <div class="preview-block" id="cue-preview" style="margin-top: 6px;">
+          <!-- Live gegenereerde CUE tekst -->
+        </div>
+      </div>
+
+      <div class="timeline-btn-row">
+        <button class="timeline-btn timeline-btn-secondary" onclick="backToSettings()">&larr; Terug</button>
+        <button class="timeline-btn timeline-btn-surface" onclick="copyCueToClipboard()">Kopieer naar klembord</button>
+        <button class="timeline-btn timeline-btn-primary" onclick="exportCueSheet()">Opslaan op bureaublad</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="timeline-toast">
+    <div class="timeline-toast-dot"></div>
+    <span id="toast-message">Gekopieerd naar klembord!</span>
+  </div>
+
+  <script>
+    // Live Communicatie handlers voor Ableton Extension Host
+    const isWebKit = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.live;
+    const isWebView2 = window.chrome && window.chrome.webview;
+
+    function doSendMessage(message) {
+      if (isWebKit) {
+        window.webkit.messageHandlers.live.postMessage(message);
+      } else if (isWebView2) {
+        window.chrome.webview.postMessage(message);
+      }
+    }
+
+    function closeWithResult(result) {
+      doSendMessage({ method: "close_and_send", params: [JSON.stringify(result)] });
+    }
+
+    function cancelDialog() {
+      closeWithResult({ action: "cancel" });
+    }
+
+    // Injected projectData fallback bij direct lokaal openen
+    if (typeof projectData === "undefined") {
+      window.projectData = {
+        tempo: 120,
+        clips: [
+          { name: "Daft Punk - One More Time (Part 1)", startTime: 0, endTime: 120, duration: 120, trackName: "Vocal Lane", isAudio: true, fileName: "01-One-More-Time.wav" },
+          { name: "Daft Punk - One More Time (Part 2)", startTime: 120, endTime: 240, duration: 120, trackName: "Vocal Lane", isAudio: true, fileName: "01-One-More-Time.wav" },
+          { name: "Justice - D.A.N.C.E. (Extended Mix)", startTime: 180, endTime: 360, duration: 180, trackName: "Main Song Lane", isAudio: true, fileName: "02-D.A.N.C.E.wav" },
+          { name: "Riser Sample.wav", startTime: 100, endTime: 104, duration: 4, trackName: "FX Lane", isAudio: true, fileName: "riser.wav" }
+        ]
+      };
+    }
+
+    let matchedTracksList = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateInfoSummary();
+      
+      document.getElementById("threshold-input").addEventListener("input", updateInfoSummary);
+
+      document.getElementById("filename-input").addEventListener("input", () => {
+        const wavFilename = document.getElementById("filename-input").value.trim() || "mixtape.wav";
+        document.getElementById("output-filename-input").value = wavFilename.replace(/\.[a-zA-Z0-9]+$/, "") + ".txt";
+      });
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toast-message").innerText = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    function parseThreshold(input) {
+      const parts = input.split(":");
+      if (parts.length === 2) {
+        const mins = parseFloat(parts[0] || "0");
+        const secs = parseFloat(parts[1] || "0");
+        return mins * 60 + secs;
+      }
+      const val = parseFloat(input);
+      return isNaN(val) ? 0 : val;
+    }
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      const frames = Math.floor((seconds - Math.floor(seconds)) * 75);
+      
+      const mm = String(mins).padStart(2, '0');
+      const ss = String(secs).padStart(2, '0');
+      const ff = String(frames).padStart(2, '0');
+      
+      return `${mm}:${ss}:${ff}`;
+    }
+
+    // Aaneengesloten clips op hetzelfde spoor groeperen
+    function mergeClipsList(clips, tempo) {
+      const mergeEnabled = document.getElementById("merge-contiguous-checkbox").checked;
+      if (!mergeEnabled) return clips;
+
+      const groups = {};
+      clips.forEach(clip => {
+        const tName = clip.trackName || "Onbekend Spoor";
+        if (!groups[tName]) {
+          groups[tName] = [];
+        }
+        groups[tName].push(clip);
+      });
+
+      const allMerged = [];
+
+      for (const tName in groups) {
+        const trackClips = groups[tName];
+        trackClips.sort((a, b) => a.startTime - b.startTime);
+
+        if (trackClips.length === 0) continue;
+
+        let current = { ...trackClips[0] };
+
+        for (let i = 1; i < trackClips.length; i++) {
+          const next = trackClips[i];
+          if (Math.abs(next.startTime - current.endTime) <= 0.1) {
+            current.endTime = next.endTime;
+            current.duration = current.endTime - current.startTime;
+          } else {
+            allMerged.push(current);
+            current = { ...next };
+          }
+        }
+        allMerged.push(current);
+      }
+
+      return allMerged;
+    }
+
+    function updateInfoSummary() {
+      const thresholdVal = document.getElementById("threshold-input").value;
+      const thresholdSecs = parseThreshold(thresholdVal);
+      const tempo = projectData.tempo;
+      
+      const processedClips = mergeClipsList(projectData.clips, tempo);
+      const totalCount = processedClips.length;
+      const longClips = processedClips.filter(clip => {
+        const durationSec = (clip.duration / tempo) * 60;
+        return durationSec >= thresholdSecs;
+      });
+
+      document.getElementById("info-text").innerHTML = 
+        `Gevonden: <strong>${projectData.clips.length} ruwe clips</strong> in arrangement. ` +
+        `Na samenvoeging: <strong>${totalCount} segmenten</strong>, waarvan <strong>${longClips.length} tracks</strong> voldoen aan de drempelwaarde.`;
+    }
+
+    function calculateMatchedTracks() {
+      const thresholdVal = document.getElementById("threshold-input").value;
+      const thresholdSecs = parseThreshold(thresholdVal);
+      const transitionMode = document.getElementById("transition-select").value;
+      const tempo = projectData.tempo;
+      
+      const processedClips = mergeClipsList(projectData.clips, tempo);
+
+      const validClips = processedClips.filter(clip => {
+        const durationSec = (clip.duration / tempo) * 60;
+        return durationSec >= thresholdSecs;
+      });
+
+      validClips.sort((a, b) => a.startTime - b.startTime);
+      
+      const tracks = [];
+      for (let i = 0; i < validClips.length; i++) {
+        const clip = validClips[i];
+        let startBeats = clip.startTime;
+
+        if (transitionMode === "end" && i > 0) {
+          let maxEndTime = startBeats;
+          for (let j = 0; j < validClips.length; j++) {
+            const other = validClips[j];
+            if (other !== clip && other.trackName !== clip.trackName && other.startTime < clip.startTime && other.endTime > clip.startTime) {
+              if (other.endTime > maxEndTime) {
+                maxEndTime = other.endTime;
+              }
+            }
+          }
+          startBeats = Math.min(maxEndTime, clip.endTime);
+        }
+
+        const clipTimeSecs = (startBeats / tempo) * 60;
+        
+        let artist = "Various";
+        let title = clip.name;
+
+        title = title.replace(/\s*\(Part\s*\d+\)/i, "").replace(/\s*pt\.?\s*\d+/i, "");
+
+        const nameParts = title.split(" - ");
+        if (nameParts.length >= 2) {
+          artist = nameParts[0].trim();
+          title = nameParts.slice(1).join(" - ").trim();
+        } else {
+          artist = "Various";
+          title = title.trim();
+        }
+
+        title = title.replace(/\.[a-zA-Z0-9]+$/, "");
+
+        tracks.push({
+          trackNumber: String(i + 1).padStart(2, "0"),
+          clipName: clip.name,
+          timeSeconds: clipTimeSecs,
+          timeFormatted: formatTime(clipTimeSecs),
+          artist: artist,
+          title: title,
+          trackName: clip.trackName || "Onbekend Spoor",
+          fileName: clip.fileName || "Geen audiobestand"
+        });
+      }
+      
+      matchedTracksList = tracks;
+    }
+
+    function buildTable() {
+      const tbody = document.getElementById("track-table-body");
+      tbody.innerHTML = "";
+
+      if (matchedTracksList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 24px; color: var(--timeline-text-muted);">Geen tracks gevonden die aan de drempelwaarde voldoen.</td></tr>`;
+        return;
+      }
+
+      matchedTracksList.forEach((track, index) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td style="text-align: center; font-weight: 700; color: var(--timeline-text-secondary); font-family: var(--timeline-font-mono);">
+            ${track.trackNumber}
+          </td>
+          <td>
+            <div class="timeline-timecode">${track.timeFormatted}</div>
+            <div style="font-size: 0.72rem; color: var(--timeline-text-muted); margin-top: 2px;">
+              ${Math.round(track.timeSeconds)}s
+            </div>
+          </td>
+          <td>
+            <span class="timeline-lane-tag">${escapeHtml(track.trackName)}</span>
+            <div style="font-size: 0.72rem; color: var(--timeline-text-muted); font-family: var(--timeline-font-mono); margin-top: 1px;">
+              ${escapeHtml(track.fileName)}
+            </div>
+          </td>
+          <td>
+            <input type="text" class="timeline-table-input" value="${escapeHtml(track.title)}" 
+              oninput="updateTrackTitle(${index}, this.value)">
+          </td>
+          <td>
+            <input type="text" class="timeline-table-input" value="${escapeHtml(track.artist)}" 
+              oninput="updateTrackArtist(${index}, this.value)">
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function updateTrackTitle(index, val) {
+      matchedTracksList[index].title = val;
+      updateCueTextPreview();
+    }
+
+    function updateTrackArtist(index, val) {
+      matchedTracksList[index].artist = val;
+      updateCueTextPreview();
+    }
+
+    function generateCueString() {
+      const filename = document.getElementById("filename-input").value || "mixtape.wav";
+      
+      let cue = `PERFORMER "Various Artists"\n`;
+      cue += `TITLE "Ableton Arrangement Mixtape"\n`;
+      cue += `FILE "${filename}" WAVE\n`;
+      
+      matchedTracksList.forEach(track => {
+        cue += `  TRACK ${track.trackNumber} AUDIO\n`;
+        cue += `    TITLE "${track.title.replace(/"/g, '\\"')}"\n`;
+        cue += `    PERFORMER "${track.artist.replace(/"/g, '\\"')}"\n`;
+        cue += `    INDEX 01 ${track.timeFormatted}\n`;
+        cue += `    REM FILE "${track.fileName.replace(/"/g, '\\"')}"\n`;
+        cue += `    REM LANE "${track.trackName.replace(/"/g, '\\"')}"\n`;
+      });
+      
+      return cue;
+    }
+
+    function updateCueTextPreview() {
+      document.getElementById("cue-preview").innerText = generateCueString();
+    }
+
+    function proceedToPreview() {
+      calculateMatchedTracks();
+      buildTable();
+      updateCueTextPreview();
+      
+      document.getElementById("view-settings").classList.add("hidden");
+      document.getElementById("view-preview").classList.remove("hidden");
+      
+      document.getElementById("tab-btn-settings").classList.remove("active");
+      document.getElementById("tab-btn-preview").classList.add("active");
+    }
+
+    function backToSettings() {
+      document.getElementById("view-preview").classList.add("hidden");
+      document.getElementById("view-settings").classList.remove("hidden");
+      
+      document.getElementById("tab-btn-preview").classList.remove("active");
+      document.getElementById("tab-btn-settings").classList.add("active");
+    }
+
+    function copyCueToClipboard() {
+      const text = generateCueString();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Cue sheet gekopieerd naar klembord!");
+      }).catch(err => {
+        showToast("Kopiëren mislukt: " + err);
+      });
+    }
+
+    function exportCueSheet() {
+      const cueText = generateCueString();
+      let cueFilename = document.getElementById("output-filename-input").value.trim() || "mixtape.txt";
+      
+      if (!cueFilename.toLowerCase().endsWith(".txt")) {
+        const lastDot = cueFilename.lastIndexOf(".");
+        if (lastDot > 0) {
+          cueFilename = cueFilename.substring(0, lastDot) + ".txt";
+        } else {
+          cueFilename += ".txt";
+        }
+      }
+
+      closeWithResult({
+        action: "save",
+        filename: cueFilename,
+        content: cueText
+      });
+    }
+  </script>
+</body>
+</html>
